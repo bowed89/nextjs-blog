@@ -1,29 +1,54 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
-import '../styles/login.css';
+import  { Button, Input, Checkbox, Form } from 'antd';
+//import '../styles/login.css';
 
 export const login = () => {
+
+    const router = useRouter();
+
+    const goRegister = () => {
+
+        router.push('/register')
+
+    }
+
     return (
-        <div>
+    <Form
+      name="basic"
+      initialValues={{ remember: true }}
+    >
+      <Form.Item
+        label="Correo Electrónico"
+        name="email"
+        rules={[{ required: true, message: 'Por favor escriba su coreo electrónico!' }]}
+      >
+        <Input />
+      </Form.Item>
 
-            <div className="container">
-                    
-                <label>Correo Electrónico</label>
-                <input type="text" name="uname" placeholder="Ingrese su correo electrónico" required/>
+      <Form.Item
+        label="Contraseña"
+        name="Password"
+        rules={[{ required: true, message: 'Por favor escriba su contraseña!' }]}
+      >
+        <Input.Password />
+      </Form.Item>
 
-                <label>Contraseña</label>
-                <input type="password" name="psw" placeholder="Ingrese su contraseña" required/>
+      <Form.Item  name="remember" valuePropName="checked">
+        <Checkbox>Recuérdame</Checkbox>
+      </Form.Item>
 
-                <button type="submit">INICIAR SESIÓN</button>
+      <Form.Item >
+        <Button type="primary" htmlType="submit">
+          Iniciar sesión
+        </Button>
+      </Form.Item>
 
-                <label>
-                    <input type="checkbox"  name="remember" /> Recuérdame 
-                </label>
+      <Button type="default" onClick={ goRegister }>Ir a registro</Button>
 
-            </div>
+    </Form>
 
-
-        </div>
 
     )
 }
